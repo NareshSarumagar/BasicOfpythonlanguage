@@ -90,3 +90,30 @@ for sid,info in std.items():
         highest = info["gpa"]
         high = highest
 print(high)
+
+
+# Count Letters with defaultdict
+# Take a word from the user. Use defaultdict(int) to count how many times each
+# letter appears, and print the result.
+# Hint: counts = defaultdict(int) , then counts[ch] += 1 .
+from collections import defaultdict
+count = defaultdict(int)
+user_word = input("enter user word: ")
+for ch in user_word:
+    count[ch] +=1
+print(dict(count))
+
+# Word Frequency with Counter
+# Take a sentence from the user. Split it into words and use Counter to find the 3
+# most common words. Print them with their counts.
+# Hint: Counter(sentence.split()).most_common(3)
+from collections import Counter
+sent = input("enter a sentence from user: ")
+
+count = Counter(sent)
+print(count)
+
+most_comm = Counter(sent).most_common(3)
+print(most_comm)
+print(sent.split())
+print(set(sent))
