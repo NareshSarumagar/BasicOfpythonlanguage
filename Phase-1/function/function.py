@@ -87,3 +87,81 @@ def convert(temp, to="F"):
         C = temp*9/5+32
         return C
 print(convert(90))
+
+# Sum and Average Together
+# Write a function stats(nums) that returns BOTH the sum and the average as a
+# tuple. Call it and unpack the result into two variables in one line, then print them.
+# Uses: multiple return + unpacking  
+
+def stats(nums):
+    total_sum = sum(nums)
+    avg = total_sum / len(nums)
+    return total_sum, avg
+s , a  = stats([10,60,40,78])
+print(s,a)
+
+# Write a function area(length, width) that returns the area, with a docstring
+# explaining what it does. Then print its docstring using area.__doc__ .
+# Uses: return + docstring
+
+def area(length, width):
+    """Then print is docstring using area._doc_."""
+    return length*width
+
+print(area.__doc__)
+print(area(5,6))
+
+# Divide with Remainder
+# Write a function divide(a, b) that returns BOTH the quotient and the remainder
+# as a tuple. Unpack and print them for divide(17, 5) → expected 3 and 2 .
+# Hint: return a // b, a % b
+
+def divide(a,b):
+    c = a // b
+    d = a % b
+    return c,d
+
+e,f = divide(17,6)
+
+print(e,f)
+
+
+# Scope Detective
+# Write code with a global x = "global" and a function that creates a local x =
+# "local" and prints it. Outside the function, print x too. In a comment, explain
+# why the two prints differ.
+# Hint: local vs global — Section 2.
+
+x = "global"
+def function(x):
+    print(x)
+
+function(x)
+
+def function1():
+    x = "local"
+    print(x)
+
+function1()
+
+# Write a function summary(nums) that returns the minimum, maximum, AND
+# average — three values as a tuple. Add a docstring. Unpack all three and print
+# them.
+# Hint: return min(nums), max(nums), sum(nums)/len(nums)
+
+def summary(nums):
+    """The minimum number of tupple"""
+    min_num = min(nums)
+    """The maximum number of tupple"""
+    max_num = max(nums)
+    """The average number of tupple"""
+    avg = sum(nums) / len(nums)
+    return min_num,max_num,avg
+
+a,b,c = summary([23,24,25,67])
+print(summary.__doc__)
+print(a)
+print(summary.__doc__)
+print(b)
+print(summary.__doc__)
+print(c)
