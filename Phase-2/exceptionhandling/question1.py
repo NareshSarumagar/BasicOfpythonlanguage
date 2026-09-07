@@ -57,3 +57,35 @@ else:
     print("You entered a valid index:",i)
 finally:
     print("checking is completed...")
+
+#raise — Triggering Your Own Errors
+
+def check_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative.")
+    elif age < 18:
+        raise ValueError("You must be at least 18 years old.")
+    else:
+        print("Age is valid.")
+
+
+try:
+    user_age = int(input("Enter your age: "))
+    check_age(user_age)
+
+except ValueError as e:
+    print("Error:", e)
+
+
+#custion exception 
+
+class InsufficientBalance(Exception):
+ pass
+def withdraw(balance, amount):
+ if amount > balance:
+  raise InsufficientBalance("Not enough money!")
+ return balance - amount
+try:
+ withdraw(100, 500)
+except InsufficientBalance as e:
+ print("Error:", e) #
