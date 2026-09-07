@@ -89,3 +89,45 @@ try:
  withdraw(100, 500)
 except InsufficientBalance as e:
  print("Error:", e) #
+
+
+#Catch specific exceptions, not a bare except: — you don't want to hide real bugs in your code. Catching specific exceptions 
+# allows you to handle known error conditions while still allowing unexpected errors to propagate and be noticed.
+
+try: 
+    age =int(input("Enter your age:"))
+except ValueError:
+    print("Invalid input. Please enter a valid integer for age.")
+
+
+#Keep try blocks small — wrap only the risky line, not your whole program.
+try:
+    number = int(input("Enter a number:"))
+    Div = 100/number
+    print("Result:",Div)
+except ValueError:
+    print("Invalid input. Please enter a valid integer.")
+except ZeroDivisionError:
+    print("Error: Division by zero is not allowed.")
+
+#Don't silence errors — an empty except: pass makes bugs invisible.
+
+try:
+    num = int(input("Enter a number:"))
+    square = num ** 2
+    print("Square of the number:", square)
+except ValueError:
+    pass
+
+#Use finally for cleanup — closing files, releasing resources.
+
+try:
+    file = open("notes.txt", "r")
+    content = file.read()
+    print(content)
+except FileNotFoundError:
+    print("Error: File not found.")
+finally:
+    if 'file' in locals():
+        file.close()
+
