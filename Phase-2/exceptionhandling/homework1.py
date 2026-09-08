@@ -78,3 +78,46 @@ while i < len(pairs):
     finally:
         print("---")
     i += 1
+
+#interview question: What will the following code print?
+
+    def f():
+        try:
+            return "runs"
+        finally:
+            print("cleanup")
+
+
+print(f())
+
+# Custom Exception Bank
+# Create a custom exception InsufficientBalance . Write a withdraw(balance,
+# amount) function that raises it when the amount exceeds the balance. Test both a
+# successful and a failing withdrawal with try/except.
+# Tests: defining and raising a custom exception (Section 6).
+
+class InsufficientBalance(Exception):
+    pass
+
+balance = 0  # Initialize balance to 0
+
+def withdraw(balance, amount):
+    if amount > balance:
+        raise InsufficientBalance("Insufficient balance for this withdrawal.")
+    return balance - amount
+
+while balance == 0:
+    try:
+        balance = float(input("Enter your current balance: "))
+        if balance < 0:
+            raise ValueError("Balance cannot be negative.")
+    except ValueError as e:
+        print("Error:", e)
+        balance = 0  # Reset balance to 0 to re-prompt
+
+try:
+    amount = float(input("Enter the amount to withdraw: "))
+    new_balance = withdraw(balance, amount)
+    print(f"Withdrawal successful. New balance: {new_balance}")
+except InsufficientBalance as e:
+    print("Error:", e)
