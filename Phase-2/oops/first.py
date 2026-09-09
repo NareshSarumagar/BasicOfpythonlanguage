@@ -57,3 +57,118 @@ print(dog.species)
 
 '''A method is just a function that lives inside a class. There are three kinds.'''
 
+class Circle:
+    pi = 3.14159
+    def __init__(self, radius):
+        self.radius = radius
+        # 1) instance method — uses self / object data
+    def area(self):
+        return Circle.pi * self.radius ** 2
+        # 2) class method — uses cls, works on the class
+    @classmethod
+    def unit_circle(cls):
+        return cls(1)
+        # 3) static method — no self, no cls; just a helper
+    @staticmethod
+    def describe():
+        return "A circle is a round shape."
+c = Circle(5)
+print(c.area()) # 78.53975
+print(Circle.unit_circle().radius) # 1
+print(Circle.describe())
+
+#Real-World Example: Bank Account Class
+
+'''Let us tie everything together — instance attributes, class attributes, and methods — in a realistic BankAccount class.'''
+
+class BankAccount:
+    bank_name = "naresh_saru"
+
+    def __init__(self,owner,balance=0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self,amount):
+        if amount <=0:
+           return print("Ammount must be negative.")
+        self.balance +=amount
+        print(f"Deposited {amount}. Balance: {self.balance}")
+
+
+    def withdraww(self, amount):
+        if amount > self.balance:
+            return print("Insuficeint balance.")
+        self.balance -= amount
+        print(f"Withdrew {amount}. Balance: {self.balance}")
+
+acc = BankAccount("naresh",2000)
+acc.deposit(2000)
+print(acc.deposit(1000))
+print(acc.withdraww(500))
+print(acc.bank_name)
+
+#Practice Basic
+
+'''B1. Make a Car class with attributes brand and speed. Add a method show() that prints them nicely.'''
+
+class Car:
+    def __init__(self,brand,speed):
+        self.brand = brand
+        self.speed = speed
+
+    def show(self):
+        return f"Brand is {self.brand} and speed is{self.speed}"
+
+c1 = Car("toyataaa", 3000)
+print(c1.show())
+
+'''M2. Create a Temperature class storing celsius. Add a @staticmethod called c_to_f(c) that converts Celsius to
+Fahrenheit, and an instance method fahrenheit() that uses it.'''
+
+
+class Temperature:
+    def __init__(self, celsius):
+        self.celsius = celsius
+
+    @staticmethod
+    def c_to_f(c):
+        return (c * 9/5) + 32
+
+    def fahrenheit(self):
+        return Temperature.c_to_f(self.celsius)
+
+temp = Temperature(30)
+print("Celsius:", temp.celsius)
+print("Fahrenheit:", temp.fahrenheit())
+
+'''M3. Build a Playlist class holding a list of songs. Add add_song(), remove_song(), and total() methods.'''
+
+class Playlist:
+    def __init__(self):
+        self.songs = []
+
+    def add_song(self, song):
+        self.songs.append(song)
+
+    def remove_song(self, song):
+        if song in self.songs:
+            self.songs.remove(song)
+
+    def total(self):
+        return self.songs
+
+
+# playlist
+playlist = Playlist()
+
+# Add songs
+playlist.add_song("Perfect")
+playlist.add_song("Shape of You")
+playlist.add_song("Believer")
+playlist.add_song("Move on")
+playlist.add_song("The amazing spider man.")
+# Remove
+playlist.remove_song("Believer")
+
+# Display
+print("Total songs:", playlist.total())
