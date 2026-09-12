@@ -162,3 +162,66 @@ quiz.add_question(Question("What is 5 + 3?", "8"))
 quiz.add_question(Question("Which language are we learning?", "Python"))
 
 quiz.run()
+
+#M3. Extend the food app: give Order a delivery fee and a apply_discount(percent) method. Add a second
+#restaurant and show orders can be built from either.
+
+
+class Restaurant:
+    def __init__(self, name):
+        self.name = name
+
+
+class Order:
+    def __init__(self, restaurant, items, delivery_fee):
+        self.restaurant = restaurant
+        self.items = items
+        self.delivery_fee = delivery_fee
+        self.discount = 0
+
+    def total(self):
+        food_total = sum(price for item, price in self.items)
+        discount_amount = food_total * self.discount / 100
+
+        return food_total - discount_amount + self.delivery_fee
+
+    def apply_discount(self, percent):
+        self.discount = percent
+
+    def show_order(self):
+        print("Restaurant:", self.restaurant.name)
+
+        print("Items:")
+        for item, price in self.items:
+            print(item, "-", price)
+
+        print("Delivery Fee:", self.delivery_fee)
+        print("Discount:", self.discount, "%")
+        print("Total:", self.total())
+        print()
+
+
+# two restaurants
+restaurant1 = Restaurant("Bamboo Cafe")
+restaurant2 = Restaurant("Pizza House")
+
+
+#  first restaurant
+order1 = Order(
+    restaurant1,
+    [("Burger", 300), ("Fries", 150)],
+    50
+)
+
+order1.apply_discount(10)
+
+order2 = Order(
+    restaurant2,
+    [("Pizza", 600), ("Coke", 100)],
+    40
+)
+
+order2.apply_discount(20)
+
+order1.show_order()
+order2.show_order()
