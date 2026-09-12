@@ -69,3 +69,56 @@ order.add_item("Momo", 180)
 order.add_item("coke",200)
 
 order.show_bill()
+
+# M1. Library. Build three classes: Book (title, available), Member (name, borrowed list), and Library (holds books &
+# members) with a borrow(member, book) method that checks availability and updates both objects.
+# Hint: borrow() reads book.available, sets it False, and appends the book to member.borrowed.
+# M2.
+
+class Book:
+    def __init__(self, title):
+        self.title = title
+        self.available = True
+
+
+class Member:
+    def __init__(self, name):
+        self.name = name
+        self.borrowed = []
+
+
+class Library:
+    def __init__(self):
+        self.books = []
+        self.members = []
+
+    def borrow(self, member, book):
+        if book.available:
+            book.available = False
+            member.borrowed.append(book)
+
+            print(member.name, "borrowed", book.title)
+        else:
+            print(book.title, "is not available.")
+
+book1 = Book("Python Programming")
+book2 = Book("Java Programming")
+
+member1 = Member("Aarati")
+
+library = Library()
+
+library.books.append(book1)
+library.books.append(book2)
+library.members.append(member1)
+
+library.borrow(member1, book1)
+
+
+library.borrow(member1, book1)
+
+
+print("\nBorrowed books by", member1.name)
+
+for book in member1.borrowed:
+    print("-", book.title)
