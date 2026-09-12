@@ -122,3 +122,43 @@ print("\nBorrowed books by", member1.name)
 
 for book in member1.borrowed:
     print("-", book.title)
+
+#M2. Quiz app. A Question (text, answer) and a Quiz that holds many Questions and has a run() method that asks
+#each and scores the user.
+
+class Question:
+    def __init__(self, text, answer):
+        self.text = text
+        self.answer = answer
+
+
+class Quiz:
+    def __init__(self):
+        self.questions = []
+
+    def add_question(self, question):
+        self.questions.append(question)
+
+    def run(self):
+        score = 0
+
+        for question in self.questions:
+            print(question.text)
+            user_answer = input("Your answer: ")
+
+            if user_answer.lower() == question.answer.lower():
+                print("Correct!")
+                score += 1
+            else:
+                print("Wrong! Correct answer:", question.answer)
+
+        print("\nQuiz Finished!")
+        print("Your score:", score, "/", len(self.questions))
+
+quiz = Quiz()
+
+quiz.add_question(Question("What is the capital of Nepal?", "Kathmandu"))
+quiz.add_question(Question("What is 5 + 3?", "8"))
+quiz.add_question(Question("Which language are we learning?", "Python"))
+
+quiz.run()
